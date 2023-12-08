@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teste Notification com JavaScript</title>
+  <link rel="stylesheet" href="css/styles.css"> 
+</head>
+<body>
+  <div>
+  </div>
+  <div>
+    <h2>Teste de notificações web</h2>
+    <button onclick="shunno_push_api()">
+      Enviar notificação em 5s
+    </button>
+  </div>
+  <script>
+    function shunno_push_api() {
+      if (!Notification) {
+        alert('Hello World!'); 
+        return;
+      }
+
+      // Solicitar permissão para notificações
+      Notification.requestPermission().then((permission) => {
+        if (permission === "granted") {
+          // Adicionar um atraso de 5 segundos antes de exibir a notificação
+          setTimeout(function() {
+            var notification = new Notification('Título da Notificação', {
+              icon: 'https://i.imgur.com/Eesst9S.png',
+              body: "Confirmação de agendamento",
+            });
+
+            notification.onclick = function () {
+              window.open("https://www.linx.com.br/");      
+            };
+          }, 5000); // 5000 milissegundos = 5 segundos
+        }
+      });
+    }
+
+    // Solicitar permissão assim que a página é carregada
+    document.addEventListener('DOMContentLoaded', function() {
+      Notification.requestPermission();
+    });
+  </script>
+</body>
+</html>
