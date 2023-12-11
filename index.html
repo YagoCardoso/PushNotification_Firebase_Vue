@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Teste Notification com JavaScript</title>
   <link rel="stylesheet" href="css/styles.css"> 
+  <link rel="manifest" href="/manifest.json">
 </head>
 <body>
   <div>
@@ -12,7 +13,7 @@
   <div>
     <h2>Teste de notificações web</h2>
     <button onclick="shunno_push_api()">
-      Enviar notificação em 5s
+      Enviar notificação em 3s
     </button>
   </div>
   <script>
@@ -25,17 +26,16 @@
       // Solicitar permissão para notificações
       Notification.requestPermission().then((permission) => {
         if (permission === "granted") {
-          // Adicionar um atraso de 5 segundos antes de exibir a notificação
           setTimeout(function() {
-            var notification = new Notification('Título da Notificação', {
-              icon: 'https://i.imgur.com/Eesst9S.png',
+            var notification = new Notification('Notificação App Yago', {
+              icon: 'https://cdn-icons-png.flaticon.com/512/4319/4319308.png',
               body: "Confirmação de agendamento",
             });
 
             notification.onclick = function () {
               window.open("https://www.linx.com.br/");      
             };
-          }, 5000); // 5000 milissegundos = 5 segundos
+          }, 3000); 
         }
       });
     }

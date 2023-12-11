@@ -1,0 +1,24 @@
+{
+  "background_color": "#ffffff",
+  "description": "Test Notification by Yago Cardoso",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Test-Notification-Yago",
+  "orientation": "portrait",
+  "scope": "/index.html",
+  "short_name": "Test-Notification-Yago",
+  "start_url": "/",
+  "theme_color": "#ffffff",
+  "categories": [],
+  "screenshots": [],
+  "icons": [],
+  "shortcuts": [],
+  "lang": "pt",
+  "display_override": [
+    "browser",
+    "fullscreen",
+    "minimal-ui",
+    "standalone",
+    "window-controls-overlay"
+  ]
+}
