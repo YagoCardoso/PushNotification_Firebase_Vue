@@ -9,11 +9,12 @@
 </head>
 <body>
   <div>
-<body>
-  <div>
     <h2>Teste de notificações web</h2>
     <button onclick="shunno_push_api()">
       Enviar notificação em 3s
+    </button>
+    <button onclick="installPWA()">
+      Instalar PWA
     </button>
   </div>
   <script>
@@ -33,7 +34,7 @@
             });
 
             notification.onclick = function () {
-              window.open("https://www.linx.com.br/");      
+              window.open("https://www.google.com/");      
             };
           }, 3000); 
         }
@@ -44,6 +45,39 @@
     document.addEventListener('DOMContentLoaded', function() {
       Notification.requestPermission();
     });
+
+    // Função para instalar o PWA
+    function installPWA() {
+      if ('serviceWorker' in navigator && 'PushManager' in window) {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(function(registration) {
+            console.log('Service Worker registrado com sucesso:', registration);
+          })
+          .catch(function(error) {
+            console.error('Erro ao registrar o Service Worker:', error);
+          });
+      }
+
+      if ('beforeinstallprompt' in window) {
+        // Se o evento "beforeinstallprompt" estiver disponível, exiba o botão de instalação
+        window.addEventListener('beforeinstallprompt', (event) => {
+          event.preventDefault();
+          const installButton = document.querySelector('button[onclick="installPWA()"]');
+          installButton.style.display = 'block';
+
+          installButton.addEventListener('click', () => {
+            event.prompt();
+            event.userChoice.then((choiceResult) => {
+              if (choiceResult.outcome === 'accepted') {
+                console.log('Usuário aceitou a instalação do PWA');
+              } else {
+                console.log('Usuário recusou a instalação do PWA');
+              }
+            });
+          });
+        });
+      }
+    }
   </script>
 </body>
 </html>
